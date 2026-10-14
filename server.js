@@ -66,7 +66,7 @@ const seedQuizzes = [
 ];
 if (db.prepare('SELECT COUNT(*) AS n FROM quizzes').get().n === 0) {
  const insertSeed = db.prepare('INSERT INTO quizzes (id,title,subject,description,questions_json,created_at,updated_at) VALUES (?,?,?,?,?,?,?)');
- const seedTime = now(); const tx = db.transaction(items => items.forEach(q => insertSeed.run(q.id,q.title,q.subject,q.description,JSON.stringify(q.questions),seedTime,seedTime))); tx(seedQuizzes);
+ const seedTime = Date.now(); const tx = db.transaction(items => items.forEach(q => insertSeed.run(q.id,q.title,q.subject,q.description,JSON.stringify(q.questions),seedTime,seedTime))); tx(seedQuizzes);
 }
 
 app.disable('x-powered-by');

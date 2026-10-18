@@ -129,7 +129,7 @@ app.use('/api', (req, res, next) => {
 });
 const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 8, standardHeaders: 'draft-7', legacyHeaders: false, message: { error: 'बहुत अधिक login प्रयास हुए हैं। 15 मिनट बाद फिर कोशिश करें।' } });
 const attemptLimiter = rateLimit({ windowMs: 10 * 60 * 1000, limit: 20, standardHeaders: 'draft-7', legacyHeaders: false, message: { error: 'बहुत अधिक प्रयास हुए हैं। थोड़ी देर बाद कोशिश करें।' } });
-const now = () => new Date().toISOString();
+now = () => new Date().toISOString(); //
 const id = () => crypto.randomUUID();
 const cleanText = (v, max = 200) => typeof v === 'string' ? v.trim().slice(0, max) : '';
 function adminOnly(req, res, next) { if (req.session?.role !== 'admin') return res.status(403).json({ error: 'यह सुविधा केवल Admin के लिए है।' }); next(); }
